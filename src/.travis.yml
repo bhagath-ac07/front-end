@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t bhagath/frontend -f Dockerfile.dev .
+scri git remote add origin git@github.com:bhagath-ac07/front-end.gitpt:
+    - docker run -e CI=true bhagath/frontend npm run test
+language: generic
