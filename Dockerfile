@@ -1,5 +1,5 @@
 #stage 1
-FROM node:alpine as builder
+FROM node:alpine
 
 WORKDIR '/app'
 
@@ -15,5 +15,5 @@ RUN npm run build
 FROM nginx
 #Elastic bean stack looks are expose and maps it
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 #nginx start is run by default 
