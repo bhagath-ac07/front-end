@@ -1,9 +1,18 @@
 sudo: required
 services:
     - docker
-
 before_install:
     - docker build -t bhagath/frontend -f Dockerfile.dev .
-scri git remote add origin git@github.com:bhagath-ac07/front-end.gitpt:
+script:
     - docker run -e CI=true bhagath/frontend npm run test
 language: generic
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-south-1"
+    app: "DOCKER-APP"
+    env: "DockerApp-env"
+    bucket_name: "elasticbeanstalk-ap-south-1-167500560729"
+    bucket_path: "DOCKER-APP"
+    on:
+        branch: master
